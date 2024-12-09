@@ -1,0 +1,463 @@
+/* Reset and base setup */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Main container for the game elements */
+.div1 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Static background container */
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Background image */
+.bgpic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Path container */
+.path-container {
+    position: absolute;
+    z-index: 1;
+    top: 52.4%;
+    left: 0;
+    width: 100%;
+    height: 5rem;
+    overflow: hidden;
+}
+.path-container.animate-path .path {
+    animation: scrollPath 9s linear infinite;
+}
+
+/* Scrolling path effect */
+.path {
+    width: 200%; /* Twice the width for seamless looping */
+    height: 100%;
+    background-size: 20%;
+    background-repeat: repeat-x;
+}
+
+@media (max-width: 600px) {
+    .path {
+        width: 700%;
+    }
+}
+
+/* Character image */
+.chpic {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 3.5rem;
+    transition: transform 0.4s cubic-bezier(.4, 0, 0.4, .8);
+}
+
+.chpic.jump {
+    transform: translate(-50%, -140%);
+}
+
+/* Obstacle (assetsone.png) */
+.obstacle {
+    position: absolute;
+    z-index: 2;
+    top: 48%;
+    left: 100%; /* Starts off the right edge */
+    transform: translate(-50%, -50%);
+    width: 30px; /* Smaller size */
+}
+
+/* Obstacle animation for moving left */
+.animate-obstacle {
+    animation: moveObstacle 3s linear infinite;
+}
+
+@keyframes moveObstacle {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100vw); }
+}
+
+/* Smooth scrolling animation */
+@keyframes scrollPath {
+    0% { background-position: 0 0; }
+    100% { background-position: -100% 0; }
+}
+
+/* Start, Retry, Resume, and Quit buttons */
+.start-button, .retry-button, .resume-button, .quit-button {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    background-color: rgb(78, 78, 78);
+    border-radius: 18px;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid rgb(202, 151, 93);
+    padding-top: 10px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 3;
+}
+
+.retry-button:hover, .resume-button:hover, .quit-button:hover, .start-button:hover {
+    transform: scale(1.1); /* Slight enlarge on hover */
+}
+
+/* Pause Button */
+.pause-button {
+    position: absolute;
+    top: 1rem;
+    left: 87%;
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    background-color: rgb(78, 78, 78);
+    border-radius: 18px;
+    padding: 0.5rem 1rem;
+    border: 2px solid rgb(202, 151, 93);
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 4;
+}
+
+/* Overlay for Game Over and Pause screens */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Black tint with transparency */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    text-align: center;
+}
+
+/* Centered overlay for all devices */
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65%;
+    height: 70%;
+    margin: 6rem;
+    margin-top: 8rem;
+    border-radius: 2rem;
+    border: 3px solid rgb(202, 151, 93);
+}
+
+/* Game Over and Pause texts */
+.game-over-text, .pause-text {
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0rem;
+    margin-top: 1.8rem;
+}
+
+.total-score-display {
+    color: #fff;
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    margin-top: 1.8rem;
+    margin-bottom: 2.3rem;
+}
+
+/* Display score in overlay after Game Over */
+.score-display {
+    color: #fff;
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    margin-top: 1.8rem;
+    margin-bottom: 0rem;
+}
+
+/* Score Board */
+.score-board {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    background-color: rgb(78, 78, 78);
+    border-radius: 18px;
+    padding: 0.5rem 1rem;
+    border: 2px solid rgb(202, 151, 93);
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 4;
+}
+
+/* Define styles for the obstacles */
+.obstacle {
+    position: absolute;
+    z-index: 2;
+    top: 52%;
+    left: 100%; /* Starts off the right edge */
+    transform: translate(-50%, -50%);
+    width: 25px; /* Smaller size */
+    animation: moveObstacle 3s linear forwards; /* Move once and stop */
+}
+
+.obstacle1 {
+    position: absolute;
+    z-index: 2;
+    top: 52%;
+    left: 100%; /* Starts off the right edge */
+    transform: translate(-50%, -50%);
+    width: 25px; /* Smaller size */
+    animation: moveObstacle 3s linear forwards;
+}
+
+.obstacle2 {
+    position: absolute;
+    z-index: 2;
+    top: 52%;
+    left: 100%; /* Starts off the right edge */
+    transform: translate(-50%, -50%);
+    width: 25px; /* Smaller size */
+    animation: moveObstacle 3s linear forwards;
+}
+
+.obstacle4 {
+    position: absolute;
+    z-index: 2;
+    top: 37%;
+    left: 100%; /* Starts off the right edge */
+    transform: rotate(90deg);
+    width: 38px; /* Increased size for obstacle 4 */
+    animation: moveObstacle 3s linear forwards;
+}
+
+.obstacle5 {
+    position: absolute;
+    z-index: 2;
+    top: 49%;
+    left: 100%; /* Starts off the right edge */
+    width: 34px; /* Increased size for obstacle 5 */
+    animation: moveObstacle 3s linear forwards;
+}
+
+
+
+/* Animation for obstacles */
+@keyframes moveObstacle {
+    from {
+        left: 100%; /* Start from the right side */
+    }
+    to {
+        left: -100%; /* Move off the screen on the left */
+    }
+}
+
+.tap-anywhere {
+    position: absolute;
+    bottom: 10px;
+    width: 250%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ffffff;
+    animation: flicker 2s infinite ease-in-out;
+    opacity: 0.8;
+    z-index: 4;
+    top: 80%;
+    text-shadow: 5px 5px 5px black;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+
+  }
+  
+  /* Flickering effect */
+  @keyframes flicker {
+    0%, 50%, 100% { opacity: 0.8; }
+    25% { opacity: 0.3; }
+    75% { opacity: 0.5; }
+  }
+  
+  .withdraw-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: rgb(78, 78, 78);
+    color: white;
+    border: 2px solid rgb(202, 151, 93);
+    border-radius: 18px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 5;
+    transition: transform 0.2s;
+  }
+  
+  .withdraw-button:hover {
+    transform: scale(1.1);
+  }
+  
+/* Placeholder input field */
+.placeholder-input {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    background-color: rgb(78, 78, 78);
+    border-radius: 18px;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid rgb(202, 151, 93);
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    text-align: center;
+    z-index: 3;
+}
+
+.placeholder-input::placeholder {
+    color: rgb(255, 255, 255); /* Placeholder text color */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+/* Withdraw button style */
+.withdraw-button {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    background-color: rgb(78, 78, 78);
+    border-radius: 18px;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid rgb(202, 151, 93);
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 3;
+}
+
+.withdraw-button:hover {
+    transform: scale(1.1);
+}
+
+.wallet-placeholder {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    background-color: rgb(78, 78, 78);
+    border-radius: 18px;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid rgb(202, 151, 93);
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 3;
+}
+
+.home-button {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    background-color: rgb(78, 78, 78);
+    border-radius: 18px;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid rgb(202, 151, 93);
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 3;
+}
+.home-button:hover {
+    transform: scale(1.1);
+}
+
+
+.withdraw-button-top-left {
+    position: absolute;
+  top: 13px;
+  left: 10px;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  background-color: rgb(78, 78, 78);
+  border-radius: 18px;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid rgb(202, 151, 93);
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 3;
+  }
+  
+  .withdraw-button-top-left:hover {
+    transform: scale(1.1);
+  }
+  
+
+  .login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);  /* Dark transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  .login-container {
+    background-color: rgb(78, 78, 78);
+    padding: 20px;
+    text-align: center;
+    border-radius: 18px;
+    border: 2px solid rgb(202, 151, 93);
+  }
+  
+  .login-text {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    background-color: rgb(202, 151, 93);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    transition: background-color 0.3s;
+  }
+  
+  .login-button:hover {
+    background-color: rgb(150, 112, 66);
+  }
+
+  
+  
