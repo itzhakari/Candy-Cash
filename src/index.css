@@ -221,7 +221,7 @@ body, html {
     top: 52%;
     left: 100%; /* Starts off the right edge */
     transform: translate(-50%, -50%);
-    width: 25px; /* Smaller size */
+    width: 22px; /* Smaller size */
     animation: moveObstacle 3s linear forwards; /* Move once and stop */
 }
 
@@ -231,7 +231,7 @@ body, html {
     top: 52%;
     left: 100%; /* Starts off the right edge */
     transform: translate(-50%, -50%);
-    width: 25px; /* Smaller size */
+    width: 22px; /* Smaller size */
     animation: moveObstacle 3s linear forwards;
 }
 
@@ -241,7 +241,7 @@ body, html {
     top: 52%;
     left: 100%; /* Starts off the right edge */
     transform: translate(-50%, -50%);
-    width: 25px; /* Smaller size */
+    width: 22px; /* Smaller size */
     animation: moveObstacle 3s linear forwards;
 }
 
@@ -251,7 +251,7 @@ body, html {
     top: 37%;
     left: 100%; /* Starts off the right edge */
     transform: rotate(90deg);
-    width: 38px; /* Increased size for obstacle 4 */
+    width: 35px; /* Increased size for obstacle 4 */
     animation: moveObstacle 3s linear forwards;
 }
 
@@ -260,7 +260,7 @@ body, html {
     z-index: 2;
     top: 49%;
     left: 100%; /* Starts off the right edge */
-    width: 34px; /* Increased size for obstacle 5 */
+    width: 31px; /* Increased size for obstacle 5 */
     animation: moveObstacle 3s linear forwards;
 }
 
