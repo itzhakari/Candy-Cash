@@ -106,7 +106,7 @@ function Game() {
 
     const spawnInterval = setInterval(() => {
       spawnObstacle();
-    }, 3000); // Spawn an obstacle every 3 seconds
+    }, 8000); // Spawn an obstacle every 3 seconds
 
     return () => clearInterval(spawnInterval);
   }, [isGameStarted, isGameOver, isPaused, elapsedTime]);
